@@ -21,7 +21,15 @@
  *
  */
 function getDNSStats(domains) {
-  throw new Error('Not implemented');
+  const result = {};
+  for (let i = 0; i < domains.length; i++) {
+    const temp = domains[i].split('.').reverse();
+    for (let j = 0; j < temp.length; j++) {
+      const domain = `.${temp.slice(0, j + 1).join('.')}`;
+      result[domain] = result[domain] ? result[domain] + 1 : 1;
+    }
+  }
+  return result;
 }
 
 module.exports = getDNSStats;

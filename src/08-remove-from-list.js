@@ -18,12 +18,22 @@
  */
 
 function removeKFromList(l, k) {
-  l.forEach(element => {
-    if (element.value === k) {
+  let head = l;
+  let current = head;
+  let prev = null;
 
+  while (current.next != null) {
+    if (current.value === k) {
+      if (prev) {
+        prev.next = current.next;
+      } else {
+        head = current.next;
+      }
     }
-  });
+    prev = current;
+    current = current.next;
+  }
+  return head;
 }
-
 
 module.exports = removeKFromList;
